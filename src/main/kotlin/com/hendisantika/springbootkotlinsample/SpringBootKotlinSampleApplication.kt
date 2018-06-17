@@ -20,7 +20,7 @@ class SpringBootKotlinSampleApplication constructor(val accountRepository: Accou
                 .forEach { name ->
                     val save = Account(name[0], name[1])
                     accountRepository.save(save)
-                    Stream.of("hi", "wonwoo", "hello")
+                    Stream.of("hi", "hendi", "hello")
                             .forEach { message -> messageRepository.save(Message(message, save)) }
                 }
     }
