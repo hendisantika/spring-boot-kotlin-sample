@@ -2,7 +2,7 @@ package com.hendisantika.springbootkotlinsample.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-class WebConfig : WebMvcConfigurerAdapter() {
+class WebConfig : WebMvcConfigurer {
 
     override fun addViewControllers(registry: ViewControllerRegistry) {
         registry.addViewController("/login").setViewName("login")
