@@ -21,8 +21,14 @@ import org.springframework.security.core.userdetails.UserDetailsService
 @EnableWebSecurity
 class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) : WebSecurityConfigurerAdapter() {
 
+    @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userDetailsService)
+//        val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+//        auth!!.inMemoryAuthentication()
+//                .withUser("naruto")
+//                .password(encoder.encode("naruto"))
+//                .roles("USER")
     }
 
     override fun configure(http: HttpSecurity) {
@@ -38,4 +44,5 @@ class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) 
                 .logout()
                 .permitAll()
     }
+
 }
