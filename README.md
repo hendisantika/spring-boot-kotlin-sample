@@ -39,15 +39,15 @@ or
 ```
 
 ## use 
-1. kotlin 1.0.3
-2. Spring Boot 1.4.1 
+1. kotlin 1.2.71
+2. Spring Boot 1.5.16.RELEASE version
 3. JPA(hibernate) 5.0.11
 4. h2
 5. thymeleaf 3.0.0
 6. Spring Security 4.1.3
 
 
-## spring boot koilin sample code
+## spring boot kotlin sample code
 ### Main sample
 ```kotlin
 @SpringBootApplication
