@@ -1,15 +1,12 @@
 # Spring Boot Kotlin Sample
 
-<!-- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://spring-boot-kotlin-example.herokuapp.com)
--->
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://spring-boot-kotlin-sample.herokuapp.com)
+
 This is spring boot kotlin example.
 
-<!--
 ## Live Demo
 
-https://spring-boot-kotlin-example.herokuapp.com
-
--->
+https://spring-boot-kotlin-sample.herokuapp.com
 
 ![Login Page](img/login.png "Login Page")
 
