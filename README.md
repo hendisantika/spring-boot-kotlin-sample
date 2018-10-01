@@ -39,7 +39,7 @@ or
 # java -jar target/spring-boot-kotlin-sample-0.0.1-SNAPSHOT.jar
 ```
 
-## use 
+## Development Stack
 1. Kotlin 1.2.71
 2. Spring Boot 2.0.5.RELEASE version
 3. JPA (Hibernate) 5.2.17
