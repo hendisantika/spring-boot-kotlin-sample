@@ -12,7 +12,8 @@ https://spring-boot-kotlin-example.herokuapp.com
 -->
 
 ![Login Page](img/login.png "Login Page")
-![demo image1](http://wonwoo.ml/wordpress/wp-content/uploads/2016/10/github2.png)
+
+![Message Page](img/message.png "Message Page")
 
 ## Login
 
@@ -35,16 +36,16 @@ https://spring-boot-kotlin-example.herokuapp.com
 or
 ```
 # mvn install
-# java -jar target/spring-boot-kotlin-example-0.0.1-SNAPSHOT.jar
+# java -jar target/spring-boot-kotlin-sample-0.0.1-SNAPSHOT.jar
 ```
 
 ## use 
-1. kotlin 1.2.71
-2. Spring Boot 1.5.16.RELEASE version
-3. JPA(hibernate) 5.0.11
-4. h2
-5. thymeleaf 3.0.0
-6. Spring Security 4.1.3
+1. Kotlin 1.2.71
+2. Spring Boot 2.0.5.RELEASE version
+3. JPA (Hibernate) 5.2.17
+4. H2 Embedded Database
+5. Yhymeleaf 3.0.0
+6. Spring Security 5
 
 
 ## spring boot kotlin sample code
