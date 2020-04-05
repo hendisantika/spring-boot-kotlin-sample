@@ -37,7 +37,7 @@ class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) 
     override fun configure(http: HttpSecurity) {
         http
                 .authorizeRequests()
-                .antMatchers("/js/**", "/css/**", "/img/**", "/webjars/**").permitAll()
+                .antMatchers("/js/**", "/css/**", "/img/**", "/webjars/**", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -46,6 +46,24 @@ class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) 
                 .and()
                 .logout()
                 .permitAll()
+
+//        http.authorizeRequests()
+//                .antMatchers("/login").anonymous()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .loginProcessingUrl("/login.html")
+//                .failureUrl("/login?error")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .defaultSuccessUrl("/message.html", true)
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/login?logout")
+//
+//        http.exceptionHandling().accessDeniedPage("/message.html")
+//        http.sessionManagement().invalidSessionUrl("/login")
     }
 
 
