@@ -37,7 +37,7 @@ or
 ```
 
 ## Development Stack
-1. Kotlin 1.2.71
+1. Kotlin 1.3.71
 2. Spring Boot 2.0.5.RELEASE version
 3. JPA (Hibernate) 5.2.17
 4. H2 Embedded Database
