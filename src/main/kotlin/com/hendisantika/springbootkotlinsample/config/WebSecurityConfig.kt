@@ -37,7 +37,7 @@ class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) 
     override fun configure(http: HttpSecurity) {
         http
                 .authorizeRequests()
-                .antMatchers("/js/**", "/css/**", "/img/**", "/webjars/**", "/resources/**").permitAll()
+                .antMatchers("/js/**", "/css/**", "/img/**", "/webjars/**", "/resources/**", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
