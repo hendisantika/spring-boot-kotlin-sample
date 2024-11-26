@@ -2,11 +2,8 @@ package com.hendisantika.springbootkotlinsample.message
 
 import com.hendisantika.springbootkotlinsample.NULL
 import com.hendisantika.springbootkotlinsample.account.Account
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.ManyToOne
-import javax.validation.constraints.NotEmpty
+import jakarta.persistence.*
+import jakarta.validation.constraints.NotEmpty
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,7 +19,7 @@ import javax.validation.constraints.NotEmpty
 data class Message(
         @get:NotEmpty var message: String? = NULL,
 
-        @ManyToOne(fetch = javax.persistence.FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY)
         var account: Account? = NULL,
 
         @Id @GeneratedValue var id: Long? = NULL

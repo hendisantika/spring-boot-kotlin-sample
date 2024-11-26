@@ -1,13 +1,11 @@
 package com.hendisantika.springbootkotlinsample.account
 
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.Assert.assertThat
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,14 +18,13 @@ import org.mockito.junit.MockitoJUnitRunner
  * To change this template use File | Settings | File Templates.
  */
 
-@RunWith(MockitoJUnitRunner::class)
 class AccountServiceTest {
     @Mock
     lateinit var accountRepository: AccountRepository
 
     lateinit var accountService: AccountService
 
-    @Before
+    @BeforeEach
     fun setup() {
         accountService = AccountService(accountRepository)
     }

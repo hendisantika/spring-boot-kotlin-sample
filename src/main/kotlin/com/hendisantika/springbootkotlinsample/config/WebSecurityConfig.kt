@@ -2,13 +2,18 @@ package com.hendisantika.springbootkotlinsample.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.provisioning.InMemoryUserDetailsManager
+import org.springframework.security.web.SecurityFilterChain
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,31 +27,92 @@ import org.springframework.security.crypto.password.PasswordEncoder
  */
 @Configuration
 @EnableWebSecurity
-class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) : WebSecurityConfigurerAdapter() {
+class WebSecurityConfig(val userDetailsService: UserDetailsService) {
 
     @Throws(Exception::class)
-    override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder())
-        val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
-        auth.inMemoryAuthentication()
-                .withUser("naruto")
-                .password(encoder.encode("naruto"))
-                .roles("USER")
+
+//    override fun configure(auth: AuthenticationManagerBuilder) {
+//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder())
+//        val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+//        auth.inMemoryAuthentication()
+//                .withUser("naruto")
+//                .password(encoder.encode("naruto"))
+//                .roles("USER")
+//    }
+//    @Bean
+//    fun authenticationManager(
+//        authBuilder: AuthenticationManagerBuilder
+//    ): AuthenticationManager {
+//        val passwordEncoder = passwordEncoder()
+//
+//        // Configure in-memory user
+//        authBuilder
+//            .inMemoryAuthentication()
+//            .withUser("naruto")
+//            .password(passwordEncoder.encode("naruto"))
+//            .roles("USER")
+//
+//        // Add custom DaoAuthenticationProvider (if needed)
+//        authBuilder.authenticationProvider(daoAuthenticationProvider())
+//
+//        return authBuilder.build()
+//    }
+//
+//    @Bean
+//    fun daoAuthenticationProvider(): DaoAuthenticationProvider {
+//        val provider = DaoAuthenticationProvider()
+//        provider.setUserDetailsService(userDetailsService)
+//        provider.setPasswordEncoder(passwordEncoder())
+//        return provider
+//    }
+
+//    @Bean
+//    fun inMemoryUserDetailsManager(): InMemoryUserDetailsManager {
+//        val user: UserDetails = User.withUsername("naruto")
+//            .password(passwordEncoder().encode("naruto"))
+//            .roles("USER")
+//            .build()
+//        return InMemoryUserDetailsManager(user)
+//    }
+
+    @Bean
+    fun inMemoryUserDetailsManager(): InMemoryUserDetailsManager {
+        val user: UserDetails = User.withUsername("naruto")
+            .password(passwordEncoder().encode("naruto"))
+            .roles("USER")
+            .build()
+        return InMemoryUserDetailsManager(user)
     }
 
-    override fun configure(http: HttpSecurity) {
+    @Bean
+    fun daoAuthenticationProvider(): DaoAuthenticationProvider {
+        val provider = DaoAuthenticationProvider()
+        provider.setUserDetailsService(inMemoryUserDetailsManager())
+        provider.setPasswordEncoder(passwordEncoder())
+        return provider
+    }
+
+    @Bean
+    fun authenticationManager(
+        authenticationConfiguration: AuthenticationConfiguration
+    ): AuthenticationManager {
+        return authenticationConfiguration.authenticationManager
+    }
+
+    @Bean
+    fun configure(http: HttpSecurity): SecurityFilterChain {
         http
-                .authorizeRequests()
-                .antMatchers("/js/**", "/css/**", "/img/**", "/webjars/**", "/resources/**", "/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
+            .authorizeHttpRequests {
+                it
+                    .requestMatchers("/js/**", "/css/**", "/img/**", "/webjars/**", "/resources/**", "/login")
+                    .permitAll()
+            }
+            .formLogin { formLogin ->
+                formLogin
                 .loginPage("/login")
-                .defaultSuccessUrl("/message")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
+                    .defaultSuccessUrl("/message").permitAll()
+            }
+            .logout { logout -> logout.permitAll() }
 
 //        http.authorizeRequests()
 //                .antMatchers("/login").anonymous()
@@ -65,6 +131,7 @@ class WebSecurityConfig constructor(val userDetailsService: UserDetailsService) 
 //
 //        http.exceptionHandling().accessDeniedPage("/message.html")
 //        http.sessionManagement().invalidSessionUrl("/login")
+        return http.build()
     }
 
 

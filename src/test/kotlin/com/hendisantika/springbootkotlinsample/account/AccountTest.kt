@@ -1,14 +1,12 @@
 package com.hendisantika.springbootkotlinsample.account
 
 import org.hamcrest.CoreMatchers
-import org.junit.Assert.assertThat
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
-import org.springframework.test.context.junit4.SpringRunner
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner
  * To change this template use File | Settings | File Templates.
  */
 
-@RunWith(SpringRunner::class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class AccountTest {
